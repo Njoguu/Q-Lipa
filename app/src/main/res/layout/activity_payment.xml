@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    tools:context=".Payment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/completePayment"
+            android:layout_width="333dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="Pay"
+            android:textColor="@color/textColor"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:padding="10dp"
+            android:background="@drawable/btn_custom"
+            android:textAllCaps="false"
+            />
+
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

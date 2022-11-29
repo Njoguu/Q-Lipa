@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    tools:context=".ScanQR">
+
+    <com.budiyev.android.codescanner.CodeScannerView
+        android:id = "@+id/scanner_view"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        app:autoFocusButtonColor="@android:color/white"
+        app:autoFocusButtonVisible="true"
+        app:flashButtonColor="@color/white"
+        app:flashButtonVisible="true"
+        app:maskColor="#6C000000"/>
+
+    <TextView
+        android:id="@+id/scan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scanner_view"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:text="Scan QR Code"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/textColor"/>
+
+    <TextView
+        android:id="@+id/QRdetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scan"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:textSize="20sp"
+        android:textColor="@color/purple_200"
+        />
+
+    <Button
+        android:id="@+id/payButton"
+        android:layout_width="333dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_custom"
+        android:text="Pay Now"
+        android:layout_below="@+id/QRdetails"
+        android:layout_margin="20dp"
+        android:layout_centerHorizontal="true"
+        android:enabled="false"
+
+        />
+
+
+</RelativeLayout>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "848459326550",
+    "project_id": "q-lipa",
+    "storage_bucket": "q-lipa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:848459326550:android:771726142abd1e04a687f7",
+        "android_client_info": {
+          "package_name": "com.example.q_lipa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "848459326550-26v9i9422ghvugnoqi1hqfnd6413i9da.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmcO2rOTmFTyXSlVWwQ2mN9O1ZCd_tLCk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "848459326550-26v9i9422ghvugnoqi1hqfnd6413i9da.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
