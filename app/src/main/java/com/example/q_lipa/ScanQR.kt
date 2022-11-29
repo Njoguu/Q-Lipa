@@ -1,5 +1,6 @@
 package com.example.q_lipa
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.widget.addTextChangedListener
 import com.budiyev.android.codescanner.AutoFocusMode
 import com.budiyev.android.codescanner.CodeScanner
 import com.budiyev.android.codescanner.CodeScannerView
@@ -36,8 +38,26 @@ class ScanQR : AppCompatActivity() {
         QRDetails = findViewById(R.id.QRdetails)
         payButton = findViewById(R.id.payButton)
 
-        if(QRDetails.text.isNotBlank()){
-            payButton.isEnabled = true
+        QRDetails.addTextChangedListener(object: TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                payButton.isEnabled = false
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                payButton.isEnabled= true
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                payButton.isEnabled = true
+            }
+        })
+
+
+
+
+        payButton.setOnClickListener{
+            startActivity(Intent(this, Payment::class.java))
+            finish()
         }
 
 
