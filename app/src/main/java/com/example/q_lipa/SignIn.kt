@@ -1,5 +1,6 @@
 package com.example.q_lipa
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,81 +9,76 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import com.example.q_lipa.databinding.ActivitySignInBinding
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.FirebaseDatabase
 
 class SignIn : AppCompatActivity() {
 
     private lateinit var auth : FirebaseAuth
-    private lateinit var database : FirebaseDatabase
-    private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+    private lateinit var googleSIgnInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_sign_in)
 
 //        Hide Action Bar
         supportActionBar?.hide()
 
+//        Implement Google Sign-In
         auth = FirebaseAuth.getInstance()
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
 
-//        OnClickListener for "Already have an Account? Login!"
-        val accdonexists = findViewById<TextView>(R.id.noAcc)
-        accdonexists.setOnClickListener{
-            val intent = Intent(this, SignUp::class.java)
-            startActivity(intent)
-            finish()
+        googleSIgnInClient = GoogleSignIn.getClient(this, gso)
+        findViewById<Button>(R.id.googleSignInBtn).setOnClickListener {
+            signInGoogle()
         }
+    }
 
-//        TODO --> OncCLickListener for "Forgot Password"
-//        val forgotPass = findViewById<TextView>(R.id.forgotPassword)
-//        forgotPass.setOnClickListener{
-//            auth.currentUser?.email?.let { it1 -> auth.sendPasswordResetEmail(it1) }
-//        }
+    private fun signInGoogle() {
+        val signInIntent = googleSIgnInClient.signInIntent
+        launcher.launch(signInIntent)
+    }
 
+    private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+        result ->
+            if(result.resultCode == Activity.RESULT_OK){
+                val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+                handleResults(task)
+            }
+    }
 
-        val signInEmail = findViewById<EditText>(R.id.emailSignIn)
-        val signInPassword = findViewById<EditText>(R.id.passwordSignIn)
-        val loginBtn = findViewById<Button>(R.id.loginBtn)
+    private fun handleResults(task: Task<GoogleSignInAccount>) {
+        if (task.isSuccessful){
+            val account: GoogleSignInAccount? = task.result
+            if (account != null){
+                updateUI(account)
+            }
+        }else{
+            Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
+        }
+    }
 
-
-
-        loginBtn.setOnClickListener {
-            val email = signInEmail.text.toString()
-            val password = signInPassword.text.toString()
-
-            if(email.isEmpty() || password.isEmpty()){
-                if(email.isEmpty()){
-                    signInEmail.error = "Please enter your email address"
-                }
-                if(password.isEmpty()){
-                    signInPassword.error = "Please enter a password"
-                }
-//                TODO -- > Add Progressbar
-
-                Toast.makeText(this, "Enter valid details", Toast.LENGTH_SHORT).show()
-            }else if(!email.matches(emailPattern.toRegex())){
-//                signUpProgressbar.visibility= View.GONE
-                signInEmail.error = "Enter a valid email address"
-                Toast.makeText(this, "Enter a valid email address", Toast.LENGTH_SHORT).show()
-            }else if(password.length < 6){
-//                signUpProgressbar.visibility=View.GONE
-                signInPassword.error = "Password is too short"
-                Toast.makeText(this, "Password should have at least 6 characters", Toast.LENGTH_SHORT).show()
-            }else {
-                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener{
-                    if(it.isSuccessful){
-                        Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this, Dashboard::class.java)
-                        startActivity(intent)
-                        finish()
-                    }else{
-                        Toast.makeText(this, "Something went wrong! Cannot Log In at the time", Toast.LENGTH_SHORT).show()
-                    }
-                }
-
+    private fun updateUI(account: GoogleSignInAccount) {
+        val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+        auth.signInWithCredential(credential).addOnCompleteListener{
+            if (it.isSuccessful){
+                Toast.makeText(this, "Sign In Successful", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this,Dashboard::class.java))
+                finish()
+            }else{
+                Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
             }
         }
     }

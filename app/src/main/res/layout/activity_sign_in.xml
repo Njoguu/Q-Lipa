@@ -31,56 +31,25 @@
             android:orientation="vertical"
             android:paddingTop="45dp">
 
-            <EditText
-                android:id="@+id/emailSignIn"
-                android:layout_width="333dp"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/googleSignInBtn"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/rounded_edit_text"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
-                android:minHeight="48dp"
-                android:padding="10dp" />
+                android:backgroundTint="@color/white"
+                android:text="Sign In With Google"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:icon="@drawable/google_icon"
+                app:iconSize="20dp"
+                app:iconGravity="start"
+                app:iconPadding="4dp"
+                app:iconTint="@color/black"/>
 
-            <EditText
-                android:id="@+id/passwordSignIn"
-                android:layout_width="333dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/rounded_edit_text"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:minHeight="48dp"
-                android:padding="10dp" />
 
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/forgotPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/textColor"
-            android:text="Forgot Password?"
-            android:layout_marginRight="0dp"
-            android:padding="10dp"
-            android:layout_margin="5dp"/>
 
-        <Button
-            android:id="@+id/loginBtn"
-            android:layout_width="333dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="Login"
-            android:textColor="@color/textColor"
-            android:layout_gravity="center_horizontal"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:padding="10dp"
-            android:background="@drawable/btn_custom"
-            android:textAllCaps="false" />
 
         <LinearLayout
             android:layout_width="match_parent"

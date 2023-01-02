@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "848459326550",
+    "firebase_url": "https://q-lipa-default-rtdb.firebaseio.com",
     "project_id": "q-lipa",
     "storage_bucket": "q-lipa.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "848459326550-c9q0poorvue9pn2qjgfsj43c5r1aqvgs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.q_lipa",
+            "certificate_hash": "4ed9613ca52c0a57753cd38dafc995d559c84b82"
+          }
+        },
         {
           "client_id": "848459326550-26v9i9422ghvugnoqi1hqfnd6413i9da.apps.googleusercontent.com",
           "client_type": 3
