@@ -1,5 +1,7 @@
 # Q-Lipa
-Q-Lipa is an Android application built in Kotlin that allows passengers to settle their fare by scanning a QR code and completing M-Pesa payments. This documentation will guide you through the general idea of the app.
+Q-Lipa is an Android application built in Kotlin that allows passengers to settle their fare by scanning a QR code and completing M-Pesa payments. With Q-Lipa, users can quickly and securely pay for transportation services, making their daily commutes faster and more convenient.
+
+This documentation will guide you through the general idea of the app.
 
 ## Development
 ### Installation
