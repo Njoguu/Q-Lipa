@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -25,13 +26,22 @@ class SignIn : AppCompatActivity() {
 
     private lateinit var auth : FirebaseAuth
     private lateinit var googleSIgnInClient: GoogleSignInClient
+    private lateinit var binding: ActivitySignInBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_in)
+
+        binding = ActivitySignInBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 //        Hide Action Bar
         supportActionBar?.hide()
+
+//        createAccount redirect
+        findViewById<TextView>(R.id.noAcc).setOnClickListener {
+            startActivity(Intent(this, SignUp::class.java))
+            finish()
+        }
 
 //        Implement Google Sign-In
         auth = FirebaseAuth.getInstance()
