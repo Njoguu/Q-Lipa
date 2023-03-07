@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,25 +13,33 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textColor"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:padding="20dp"
+            android:layout_margin="5dp"
+            android:text="Complete Payment" />
+
+
         <Button
-            android:id="@+id/completePayment"
+            android:id="@+id/confirmButton"
             android:layout_width="333dp"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:text="Pay"
+            android:layout_margin="5dp"
+            android:text="Confirm and Pay"
             android:textColor="@color/textColor"
             android:layout_gravity="center_horizontal"
             android:textStyle="bold"
             android:textSize="18sp"
             android:padding="10dp"
             android:background="@drawable/btn_custom"
-            android:textAllCaps="false"
-            />
-
-
-
+            android:textAllCaps="false"/>
     </LinearLayout>
 
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
