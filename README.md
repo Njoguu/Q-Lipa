@@ -5,11 +5,11 @@ This documentation will guide you through the general idea of the app.
 
 ## Development
 ### Installation
-- Clone the repository: `git clone https://github.com/<your_username>/q-lipa.git`
+- Clone the repository: `https://github.com/Njoguu/Q-Lipa.git`
 - Open the project in Android Studio
 - Build and run the project on an Android device or emulator
 
-### Usage
+## Usage
 - Launch the Q-Lipa app on your Android device
 - Enter your M-Pesa API credentials (Consumer Key and Secret) in the settings menu
 - Scan the QR code provided by the driver or conductor
