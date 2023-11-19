@@ -2,7 +2,6 @@ package com.example.q_lipa
 
 import android.content.Intent
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -10,9 +9,9 @@ import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.widget.addTextChangedListener
 import com.budiyev.android.codescanner.AutoFocusMode
 import com.budiyev.android.codescanner.CodeScanner
 import com.budiyev.android.codescanner.CodeScannerView
@@ -38,13 +37,13 @@ class ScanQR : AppCompatActivity() {
         QRDetails = findViewById(R.id.QRdetails)
         payButton = findViewById(R.id.payButton)
 
-        QRDetails.addTextChangedListener(object: TextWatcher{
+        QRDetails.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 payButton.isEnabled = false
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                payButton.isEnabled= true
+                payButton.isEnabled = true
             }
 
             override fun afterTextChanged(p0: Editable?) {
@@ -55,7 +54,7 @@ class ScanQR : AppCompatActivity() {
 
 
 
-        payButton.setOnClickListener{
+        payButton.setOnClickListener {
             startActivity(Intent(this, Payment::class.java))
             finish()
         }
@@ -63,7 +62,7 @@ class ScanQR : AppCompatActivity() {
 
     }
 
-    private fun codeScanner(){
+    private fun codeScanner() {
 
         val scanner_view = findViewById<CodeScannerView>(R.id.scanner_view)
         val QRDetails = findViewById<TextView>(R.id.QRdetails)
@@ -78,12 +77,12 @@ class ScanQR : AppCompatActivity() {
             isFlashEnabled = false
 
             decodeCallback = DecodeCallback {
-                runOnUiThread{
+                runOnUiThread {
                     QRDetails.text = it.text
                 }
             }
             errorCallback = ErrorCallback {
-                runOnUiThread{
+                runOnUiThread {
                     Log.e("Main", "Camera Initialization Error: ${it.message}")
                 }
             }
@@ -103,16 +102,20 @@ class ScanQR : AppCompatActivity() {
         super.onPause()
     }
 
-    private fun setUpPermissions(){
+    private fun setUpPermissions() {
         val permission = ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)
 
-        if (permission != PackageManager.PERMISSION_GRANTED){
+        if (permission != PackageManager.PERMISSION_GRANTED) {
             makeRequest()
         }
     }
 
     private fun makeRequest() {
-        ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.CAMERA), CAMERA_REQUEST_CODE)
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(android.Manifest.permission.CAMERA),
+            CAMERA_REQUEST_CODE
+        )
     }
 
     override fun onRequestPermissionsResult(
@@ -120,11 +123,16 @@ class ScanQR : AppCompatActivity() {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-        when(requestCode){
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
             CAMERA_REQUEST_CODE -> {
-                if(grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED){
-                    Toast.makeText(this, "You need the camera permission to be able to use this", Toast.LENGTH_SHORT).show()
-                }else{
+                if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(
+                        this,
+                        getString(R.string.you_need_the_camera_permission_to_be_able_to_use_this),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
                     //successful
                 }
             }
