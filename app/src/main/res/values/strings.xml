@@ -36,4 +36,18 @@
     <string name="subscribe_with_googlepay_button_content_description">Subscribe With Google Pay</string>
     <string name="text_content_description">Text for the Google Pay button</string>
     <string name="overlay_content_description">Overlay for the Google Pay button</string>
+    <string name="you_need_the_camera_permission_to_be_able_to_use_this">You need the camera permission to be able to use this</string>
+    <string name="sign_in_successful">Sign In Successful</string>
+    <string name="please_enter_your_name">Please enter your name</string>
+    <string name="please_enter_your_email_address">Please enter your email address</string>
+    <string name="please_enter_a_password">Please enter a password</string>
+    <string name="please_re_enter_your_password">Please re-enter your password</string>
+    <string name="please_enter_valid_details">Please enter valid details</string>
+    <string name="enter_a_valid_email_address">Enter a valid email address</string>
+    <string name="password_is_too_short">Password is too short</string>
+    <string name="password_should_have_at_least_6_characters">Password should have at least 6 characters</string>
+    <string name="passwords_do_not_match">Passwords do not match</string>
+    <string name="confirm_you_have_entered_the_correct_password">Confirm you have entered the correct password</string>
+    <string name="account_created_successfully">Account created successfully</string>
+    <string name="something_went_wrong_try_again">Something went wrong, try again</string>
 </resources>
